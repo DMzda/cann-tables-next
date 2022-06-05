@@ -1,8 +1,16 @@
 import Head from "next/head"
 import Image from "next/image"
+import { useState } from "react"
 import { getFootballData } from "../utils/football-data"
 
 export default function Home({ leagues }) {
+  const [selectedLeague, setSelectedLeague] = useState("PL")
+
+  const handleSelect = (league) => {
+    console.log(league)
+    setSelectedLeague(league)
+  }
+
   return (
     <div className="container mx-auto px-6">
       <Head>
@@ -23,7 +31,7 @@ export default function Home({ leagues }) {
         <div>
           <ul>
             {leagues.map((league) => (
-              <li key={league.code}>
+              <li key={league.code} onClick={() => handleSelect(league.code)}>
                 <Image
                   src={league.areaFlag}
                   alt={`${league.areaName} Flag`}
@@ -43,21 +51,23 @@ export default function Home({ leagues }) {
             </tr>
           </thead>
           <tbody>
-            {leagues[0].standings.map((point) => (
-              <tr key={Object.keys(point)[0]}>
-                <td>{Object.keys(point)[0]}</td>
-                <td>
-                  <ol>
-                    {Object.values(point)[0].map((team) => (
-                      <li key={team.team.id}>
-                        {team.team.name}|{team.won}|{team.draw}|{team.lost}|
-                        {team.goalDifference}
-                      </li>
-                    ))}
-                  </ol>
-                </td>
-              </tr>
-            ))}
+            {leagues
+              .filter((league) => league.code === selectedLeague)[0]
+              .standings.map((point) => (
+                <tr key={Object.keys(point)[0]}>
+                  <td>{Object.keys(point)[0]}</td>
+                  <td>
+                    <ol>
+                      {Object.values(point)[0].map((team) => (
+                        <li key={team.team.id}>
+                          {team.position}|{team.team.name}|{team.won}|
+                          {team.draw}|{team.lost}|{team.goalDifference}
+                        </li>
+                      ))}
+                    </ol>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </main>

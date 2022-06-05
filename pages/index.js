@@ -2,6 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
 import { getFootballData } from "../utils/football-data"
+import Team from "../components/Team"
 
 export default function Home({ leagues }) {
   const [selectedLeague, setSelectedLeague] = useState("PL")
@@ -59,10 +60,7 @@ export default function Home({ leagues }) {
                   <td>
                     <ol>
                       {Object.values(point)[0].map((team) => (
-                        <li key={team.team.id}>
-                          {team.position}|{team.team.name}|{team.won}|
-                          {team.draw}|{team.lost}|{team.goalDifference}
-                        </li>
+                        <Team key={team.team.id} team={team} />
                       ))}
                     </ol>
                   </td>

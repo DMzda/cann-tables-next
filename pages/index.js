@@ -2,7 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import { getFootballData } from "../utils/football-data"
 
-export default function Home({ data }) {
+export default function Home({ leagues }) {
   return (
     <div className="container mx-auto px-6">
       <Head>
@@ -22,22 +22,17 @@ export default function Home({ data }) {
       <main className="flex flex-row justify-evenly">
         <div>
           <ul>
-            <li>
-              <span className="inline-block w-8 h-4 bg-red-500 mr-1"></span>
-              Premier League
-            </li>
-            <li>
-              <span className="inline-block w-8 h-4 bg-red-500 mr-1"></span>
-              Premier League
-            </li>
-            <li>
-              <span className="inline-block w-8 h-4 bg-red-500 mr-1"></span>
-              Premier League
-            </li>
-            <li>
-              <span className="inline-block w-8 h-4 bg-red-500 mr-1"></span>
-              Premier League
-            </li>
+            {leagues.map((league) => (
+              <li key={league.code}>
+                <Image
+                  src={league.areaFlag}
+                  alt={`${league.areaName} Flag`}
+                  width={30}
+                  height={15}
+                />
+                {league.name}
+              </li>
+            ))}
           </ul>
         </div>
         <table>
@@ -48,27 +43,32 @@ export default function Home({ data }) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>93</td>
-              <td>Manchester City</td>
-            </tr>
-
-            <tr>
-              <td>92</td>
-              <td>Liverpool</td>
-            </tr>
+            {leagues[0].standings.map((point) => (
+              <tr key={Object.keys(point)[0]}>
+                <td>{Object.keys(point)[0]}</td>
+                <td>
+                  <ol>
+                    {Object.values(point)[0].map((team) => (
+                      <li key={team.team.id}>
+                        {team.team.name}|{team.won}|{team.draw}|{team.lost}|
+                        {team.goalDifference}
+                      </li>
+                    ))}
+                  </ol>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
-        {JSON.stringify(data)}
       </main>
     </div>
   )
 }
 
 export async function getStaticProps() {
-  const data = await getFootballData()
+  const leagues = await getFootballData()
 
   return {
-    props: { data }
+    props: { leagues }
   }
 }

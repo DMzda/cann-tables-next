@@ -1,7 +1,8 @@
 import Head from "next/head"
 import Image from "next/image"
+import { getFootballData } from "../utils/football-data"
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <div className="container mx-auto px-6">
       <Head>
@@ -58,7 +59,16 @@ export default function Home() {
             </tr>
           </tbody>
         </table>
+        {JSON.stringify(data)}
       </main>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getFootballData()
+
+  return {
+    props: { data }
+  }
 }

@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { getFootballData } from "../utils/football-data"
 import Team from "../components/Team"
+import LeagueSelector from "../components/LeagueSelector"
 
 export default function Home({ leagues }) {
   const [selectedLeague, setSelectedLeague] = useState("PL")
@@ -30,19 +31,11 @@ export default function Home({ leagues }) {
 
       <main className="flex flex-col md:flex-row md:justify-evenly">
         <div className="mb-2">
-          <ul>
-            {leagues.map((league) => (
-              <li key={league.code} onClick={() => handleSelect(league.code)}>
-                <Image
-                  src={league.areaFlag}
-                  alt={`${league.areaName} Flag`}
-                  width={30}
-                  height={20}
-                />
-                {league.name}
-              </li>
-            ))}
-          </ul>
+          <LeagueSelector
+            leagues={leagues}
+            selectedLeague={selectedLeague}
+            setSelectedLeague={setSelectedLeague}
+          />
         </div>
         <table>
           <thead>

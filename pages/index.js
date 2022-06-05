@@ -28,8 +28,8 @@ export default function Home({ leagues }) {
         <p>by dmzda</p>
       </header>
 
-      <main className="flex flex-row justify-evenly">
-        <div>
+      <main className="flex flex-col md:flex-row md:justify-evenly">
+        <div className="mb-2">
           <ul>
             {leagues.map((league) => (
               <li key={league.code} onClick={() => handleSelect(league.code)}>
@@ -37,7 +37,7 @@ export default function Home({ leagues }) {
                   src={league.areaFlag}
                   alt={`${league.areaName} Flag`}
                   width={30}
-                  height={15}
+                  height={20}
                 />
                 {league.name}
               </li>

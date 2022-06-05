@@ -1,6 +1,6 @@
 const Team = ({ team }) => {
   return (
-    <li className="m-1 text-center">
+    <li className="m-1 text-center whitespace-nowrap">
       <span className="border-y-2 border-l-2 border-black rounded-l-md inline-block py-0.5 px-2">
         {team.position}
       </span>

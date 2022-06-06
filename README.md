@@ -3,7 +3,7 @@
 A Next.js application that displays football tables in a Cann format. In this format, the table lets you
 visualise gaps between teams by showing every point position between teams.
 
-View
+View [live website here.](https://cann-tables-next.vercel.app/)
 
 ## Getting Started
 

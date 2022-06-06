@@ -1,22 +1,22 @@
 const Team = ({ team }) => {
   return (
-    <li className="m-1 text-center whitespace-nowrap">
-      <span className="border-y-2 border-l-2 border-black rounded-l-md inline-block py-0.5 px-2">
+    <li className="m-1 whitespace-nowrap text-center">
+      <span className="inline-block rounded-l-md border-y-2 border-l-2 border-black py-0.5 px-2">
         {team.position}
       </span>
-      <span className="border-y-2 border-l-2 border-black inline-block py-0.5 px-2">
+      <span className="inline-block border-y-2 border-l-2 border-black py-0.5 px-2">
         {team.team.shortName}
       </span>
-      <span className="border-y-2 border-l-2 border-black inline-block py-0.5 px-2 bg-green-200">
+      <span className="inline-block border-y-2 border-l-2 border-black bg-green-200 py-0.5 px-2">
         {team.won}
       </span>
-      <span className="border-y-2 border-l-2 border-black inline-block py-0.5 px-2 bg-yellow-100">
+      <span className="inline-block border-y-2 border-l-2 border-black bg-yellow-100 py-0.5 px-2">
         {team.draw}
       </span>
-      <span className="border-y-2 border-l-2 border-black inline-block py-0.5 px-2 bg-red-200">
+      <span className="inline-block border-y-2 border-l-2 border-black bg-red-200 py-0.5 px-2">
         {team.lost}
       </span>
-      <span className="border-2 border-black inline-block py-0.5 px-2 rounded-r-md">
+      <span className="inline-block rounded-r-md border-2 border-black py-0.5 px-2">
         {team.goalDifference > 0 ? "+" : ""}
         {team.goalDifference}
       </span>

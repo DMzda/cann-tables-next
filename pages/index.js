@@ -29,38 +29,42 @@ export default function Home({ leagues }) {
         <p>by dmzda</p>
       </header>
 
-      <main className="flex flex-col md:flex-row md:justify-evenly">
-        <div className="mb-2">
+      <main className="flex flex-col md:flex-row md:justify-center">
+        <div className="mb-2 mr-2">
           <LeagueSelector
             leagues={leagues}
             selectedLeague={selectedLeague}
             setSelectedLeague={setSelectedLeague}
           />
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th className="p-1">Points</th>
-              <th className="p-1">Team</th>
-            </tr>
-          </thead>
-          <tbody>
-            {leagues
-              .filter((league) => league.code === selectedLeague)[0]
-              .standings.map((point) => (
-                <tr key={Object.keys(point)[0]}>
-                  <td>{Object.keys(point)[0]}</td>
-                  <td>
-                    <ol>
-                      {Object.values(point)[0].map((team) => (
-                        <Team key={team.team.id} team={team} />
-                      ))}
-                    </ol>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <div className="rounded-md border-2 border-slate-400">
+          <table className="border-collapse border-0 p-2">
+            <thead>
+              <tr>
+                <th className="rounded-md border-r p-1">Points</th>
+                <th className="rounded-md p-1">Team</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leagues
+                .filter((league) => league.code === selectedLeague)[0]
+                .standings.map((point) => (
+                  <tr key={Object.keys(point)[0]}>
+                    <td className="border-r border-t text-center">
+                      {Object.keys(point)[0]}
+                    </td>
+                    <td className="border-t">
+                      <ol>
+                        {Object.values(point)[0].map((team) => (
+                          <Team key={team.team.id} team={team} />
+                        ))}
+                      </ol>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </main>
     </div>
   )

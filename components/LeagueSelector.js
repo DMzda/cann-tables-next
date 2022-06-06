@@ -3,10 +3,18 @@ import { RadioGroup } from "@headlessui/react"
 
 const LeagueSelector = ({ leagues, selectedLeague, setSelectedLeague }) => {
   return (
-    <RadioGroup value={selectedLeague} onChange={setSelectedLeague}>
+    <RadioGroup
+      value={selectedLeague}
+      onChange={setSelectedLeague}
+      className="rounded-md border-2 border-slate-400 p-2"
+    >
       <RadioGroup.Label className="font-bold">League</RadioGroup.Label>
       {leagues.map((league) => (
-        <RadioGroup.Option value={league.code} key={league.code}>
+        <RadioGroup.Option
+          value={league.code}
+          key={league.code}
+          className="cursor-pointer"
+        >
           {({ checked }) => (
             <>
               <Image

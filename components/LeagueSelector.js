@@ -16,17 +16,19 @@ const LeagueSelector = ({ leagues, selectedLeague, setSelectedLeague }) => {
           className="cursor-pointer"
         >
           {({ checked }) => (
-            <>
-              <Image
-                src={league.areaFlag}
-                alt={`${league.areaName} Flag`}
-                width={30}
-                height={20}
-              />
-              <span className={checked ? "bg-blue-200" : ""}>
+            <div className="flex gap-2 p-1">
+              <div className="flex-shrink-0">
+                <Image
+                  src={league.areaFlag}
+                  alt={`${league.areaName} Flag`}
+                  width={30}
+                  height={20}
+                />
+              </div>
+              <div className={checked ? "w-full bg-blue-200" : ""}>
                 {league.name}
-              </span>
-            </>
+              </div>
+            </div>
           )}
         </RadioGroup.Option>
       ))}

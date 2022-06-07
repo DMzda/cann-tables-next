@@ -30,14 +30,14 @@ export default function Home({ leagues }) {
       </header>
 
       <main className="flex flex-col md:flex-row md:justify-center">
-        <div className="mb-2 mr-2">
+        <div className="mb-2 md:mr-2">
           <LeagueSelector
             leagues={leagues}
             selectedLeague={selectedLeague}
             setSelectedLeague={setSelectedLeague}
           />
         </div>
-        <div className="rounded-md border-2 border-slate-400">
+        <div className="mb-4 rounded-md border-2 border-slate-400">
           <table className="border-collapse border-0 p-2">
             <thead>
               <tr>

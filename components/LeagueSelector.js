@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { RadioGroup } from "@headlessui/react"
+import clsx from "clsx"
 
 const LeagueSelector = ({ leagues, selectedLeague, setSelectedLeague }) => {
   return (
@@ -16,17 +17,22 @@ const LeagueSelector = ({ leagues, selectedLeague, setSelectedLeague }) => {
           className="cursor-pointer"
         >
           {({ checked }) => (
-            <>
-              <Image
-                src={league.areaFlag}
-                alt={`${league.areaName} Flag`}
-                width={30}
-                height={20}
-              />
-              <span className={checked ? "bg-blue-200" : ""}>
-                {league.name}
-              </span>
-            </>
+            <div
+              className={clsx(
+                "my-2 flex gap-2 rounded-md p-2 outline outline-2 outline-slate-300",
+                checked && "bg-indigo-200"
+              )}
+            >
+              <div className="flex-shrink-0">
+                <Image
+                  src={league.areaFlag}
+                  alt={`${league.areaName} Flag`}
+                  width={30}
+                  height={20}
+                />
+              </div>
+              <div>{league.name}</div>
+            </div>
           )}
         </RadioGroup.Option>
       ))}
